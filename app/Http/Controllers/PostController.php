@@ -7,8 +7,12 @@ use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
-    public function show(Post $post)
-    {
-        return view('posts.show', compact('post'));
-    }
+    public function store(StorePostRequest $request) 
+    { 
+        $post = $request->user()->posts()->create( 
+            $request->validated() 
+        ); 
+ 
+        return redirect()->route('posts.show', $post); 
+    } 
 }
