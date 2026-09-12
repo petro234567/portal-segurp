@@ -54,3 +54,8 @@ Route::middleware('auth')->group(function () {
         Route::post('/logout', [LoginController::class, 'destroy'])
         ->name('logout');
 });
+
+Route::middleware('auth')->group(function () {
+    Route::resource('pages', PageController::class)
+        ->middleware('can:manage-content');
+});

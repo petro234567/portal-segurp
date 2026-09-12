@@ -64,4 +64,44 @@
     </section>
 </main>
 </body>
-</html>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Crear cuenta | SecureCMS</title>
+@vite(['resources/css/app.css','resources/js/app.js'])
+</head>
+<body class="auth-page">
+<main class="auth-card">
+<header class="auth-header">
+<span>SecureCMS</span>
+<h1>Crear cuenta</h1>
+<p>Registre sus datos para acceder a la plataforma.</p>
+</header>
+@if ($errors->any())
+<div class="alert alert-error" role="alert">
+<strong>Revise la información.</strong>
+<ul>
+@foreach ($errors->all() as $error)
+<li>{{ $error }}</li>
+@endforeach
+</ul>
+</div>
+@endif
+<form method="POST" action="{{ route('register.store') }}">
+@csrf
+<label for="name">Nombre completo</label>
+<input id="name" type="text" name="name" value="{{ old('name') }}" autocomplete="name" required>
+<label for="email">Correo electrónico</label>
+<input id="email" type="email" name="email" value="{{ old('email') }}" autocomplete="email" required>
+<label for="password">Contraseña</label>
+<input id="password" type="password" name="password" autocomplete="new-password" required>
+<label for="password_confirmation">Confirmar contraseña</label>
+<input id="password_confirmation" type="password" name="password_confirmation" autocomplete="new-password" required>
+<button type="submit">Crear cuenta</button>
+</form>
+<p>¿Ya tiene una cuenta? <a href="{{ route('login') }}">Iniciar sesión</a></p>
+</main>
+</body>
+</html
