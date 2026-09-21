@@ -6,6 +6,7 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\ContactController;
 
 Route::get('/', [HomeController::class, 'index'])
     ->name('home');
@@ -59,3 +60,10 @@ Route::middleware('auth')->group(function () {
     Route::resource('pages', PageController::class)
         ->middleware('can:manage-content');
 });
+
+Route::get('/contact', [ContactController::class, 'create'])
+    ->name('Emails.contact.create');
+
+Route::post('/contact', [ContactController::class, 'store'])
+    ->middleware('throttle:contact')
+    ->name('contact.store');
