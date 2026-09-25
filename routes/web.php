@@ -7,6 +7,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\ReceivedEmailController;
 
 Route::get('/', [HomeController::class, 'index'])
     ->name('home');
@@ -67,3 +68,8 @@ Route::get('/contact', [ContactController::class, 'create'])
 Route::post('/contact', [ContactController::class, 'store'])
     ->middleware('throttle:contact')
     ->name('contact.store');
+
+Route::middleware('auth')->group(function () {
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    Route::get('/correos', [ReceivedEmailController::class, 'index'])->name('emails.index');
+});

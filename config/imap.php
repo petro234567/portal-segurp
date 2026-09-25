@@ -44,18 +44,28 @@ return [
     | array below.
     |
     */
+    
+
     'accounts' => [
 
-        'default' => [// account identifier
-            'host' => env('IMAP_HOST'),
-            'port' => env('IMAP_PORT', 9950),
-            'encryption' => env('IMAP_ENCRYPTION', 'ssl'),
-            'validate_cert' => true,
-            'username' => env('59866fbeff165a'),
-            'password' => env('da5c5e365d7ebc'),
-            'protocol' => 'imap',
-            ],
-        ],
+        'default' => [
+
+        'host' => env('IMAP_HOST', 'imap.gmail.com'),
+
+        'port' => env('IMAP_PORT', 993),
+
+        'encryption' => env('IMAP_ENCRYPTION', 'ssl'),
+
+        'validate_cert' => env('IMAP_VALIDATE_CERT', true),
+
+        'username' => env('IMAP_USERNAME'),
+
+        'password' => env('IMAP_PASSWORD'),
+
+        'protocol' => env('IMAP_PROTOCOL', 'imap'),
+
+    ],
+],
 
         /*
         'gmail' => [ // account identifier
