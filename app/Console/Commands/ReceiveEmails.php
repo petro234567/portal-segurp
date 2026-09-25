@@ -17,7 +17,7 @@ class ReceiveEmails extends Command
         $client->connect(); 
  
         $folder = $client->getFolder('INBOX'); 
- 
+    
         $messages = $folder->messages() 
             ->unseen() 
             ->limit(10) 
@@ -30,6 +30,7 @@ class ReceiveEmails extends Command
  
             $message->setFlag(['Seen']); 
         } 
+        
  
         return self::SUCCESS; 
     } 
